@@ -22,7 +22,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./intro/intro.module').then((m) => m.IntroPageModule),
     canLoad: [CanLoadIntro]
+  },  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
+
 ];
 
 @NgModule({
