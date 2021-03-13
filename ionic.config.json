@@ -1,5 +1,7 @@
 {
   "name": "bemed",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
