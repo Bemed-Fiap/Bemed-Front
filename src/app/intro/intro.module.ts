@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { IntroPageRoutingModule } from './intro-routing.module';
 
 import { IntroPage } from './intro.page';
+import { CanLoadIntro } from './services/intro-canload.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { IntroPage } from './intro.page';
     IonicModule,
     IntroPageRoutingModule
   ],
-  declarations: [IntroPage]
+  declarations: [IntroPage],
+  providers: [
+    CanLoadIntro
+  ]
 })
 export class IntroPageModule {}

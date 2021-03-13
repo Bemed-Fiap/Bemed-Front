@@ -9,7 +9,10 @@ export class IntroPage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  public setIntroductionOnLocalstorage(): void {
+    localStorage.setItem('didIntro', JSON.stringify(true));
   }
 
 }
