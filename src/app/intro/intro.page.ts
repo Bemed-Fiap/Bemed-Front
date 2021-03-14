@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intro',
@@ -7,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _router: Router
+  ) { }
 
   ngOnInit() { }
 
   public setIntroductionOnLocalstorage(): void {
-    localStorage.setItem('didIntro', JSON.stringify(true));
+    this._router.navigate(['auth']).then(_ => localStorage.setItem('didIntro', JSON.stringify(true)));
   }
 
 }

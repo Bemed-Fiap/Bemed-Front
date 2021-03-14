@@ -14,7 +14,7 @@ export class CanLoadIntro implements CanLoad {
     const didIntro = JSON.parse(localStorage.getItem('didIntro'));
 
     if (didIntro) {
-      this.router.navigate(['home']).then(_ => false);
+      this.router.navigate(['auth']).then(_ => false);
     }
 
     return true;
