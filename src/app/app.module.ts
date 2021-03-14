@@ -17,7 +17,7 @@ import { SignInPageModule } from './sign-in/sign-in.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     IntroPageModule,
-    SignInPageModule
+    SignInPageModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

@@ -15,15 +15,17 @@ export class SignInPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.buildForm();
+    this._buildForm();
   }
 
-  private buildForm(): void {
+  private _buildForm(): void {
     this.signInForm = this._fb.group({
       name: new FormControl('', Validators.compose([Validators.required])),
-      email: new FormControl('', Validators.compose([Validators.required])),
-      password: new FormControl('', Validators.compose([Validators.required])),
-      passwordConfirm: new FormControl('', Validators.compose([Validators.required]))
+      email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      phone: new FormControl('', Validators.required),
+      cpf: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      passwordConfirm: new FormControl('', Validators.required)
     });
   }
 
