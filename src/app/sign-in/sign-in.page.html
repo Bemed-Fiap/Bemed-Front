@@ -1,0 +1,41 @@
+<ion-content class="wrapper__content ion-padding">
+  <form class="wrapper__content__login-form" [formGroup]="signInForm">
+
+    <section class="wrapper__content__login-form__img__wrapper">
+      <img 
+        src="../../assets/images/auth-icon.png" 
+        class="wrapper__content__login-form__img__wrapper__img"
+        alt="Logotipo da Bemed">
+    </section>
+
+    <ion-item class="wrapper__content__login-form__item">
+      <ion-label position="floating">Nome</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item class="wrapper__content__login-form__item">
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item class="wrapper__content__login-form__item">
+      <ion-label position="floating">Senha</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-item class="wrapper__content__login-form__item">
+      <ion-label position="floating">Confirme sua senha</ion-label>
+      <ion-input type="password" formControlName="passwordConfirm"></ion-input>
+    </ion-item>
+
+    <ion-button 
+      color="tertiary" 
+      class="wrapper__content__button" 
+      [disabled]="signInForm.invalid"
+      (click)="setIntroductionOnLocalstorage()">
+      Cadastrar
+    </ion-button>
+    
+  </form>
+
+</ion-content>
