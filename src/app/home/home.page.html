@@ -1,19 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Bemed
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="wrapper__content">
+  <ion-header [translucent]="false" class="ion-no-border wrapper__content__header">
+    <ion-toolbar class="wrapper__content__header__toolbar">
+      <ion-avatar slot="start" class="wrapper__content__header__toolbar__avatar">
+        <img 
+        class="wrapper__content__header__toolbar__avatar__img"
+          alt="Imagem do usuário"
+          src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
+        >
+      </ion-avatar>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-label class="wrapper__content__header__toolbar__label">
+        <h3 class="wrapper__content__header__toolbar__label__title">Username</h3>
+        <p class="wrapper__content__header__toolbar__label__subtitle">Rua Atibaia, mansão do Lula</p>
+      </ion-label>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Vamos começar a codar?</strong>
-  </div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" class="ion-activatable">
+        <ion-icon name="home"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button tab="wallet">
+        <ion-icon name="wallet"></ion-icon>
+      </ion-tab-button>
+
+      <ion-tab-button tab="map">
+        <ion-icon name="map"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
