@@ -31,6 +31,56 @@
     </ion-item>
     <app-form-field-message *ngIf="isFieldInvalid('cpf')" [controlErrors]="getControlErrorsList('cpf')" formFieldName='cpf'></app-form-field-message>
 
+    <ng-container formGroupName="address">
+
+      <ion-item class="bmd-form__item">
+        <ion-label position="floating">CEP</ion-label>
+        <ion-input type="text" formControlName="cep" [brmasker]="{mask: '99999-999', type: 'num', len: 9}"></ion-input>
+      </ion-item>
+      <app-form-field-message *ngIf="isFieldInvalid('cep')" [controlErrors]="getControlErrorsList('cep')" formFieldName='cep'></app-form-field-message>
+
+      <ion-item class="bmd-form__item">
+        <ion-label position="floating">Logadouro</ion-label>
+        <ion-input type="text" formControlName="rua"></ion-input>
+      </ion-item>
+      <app-form-field-message *ngIf="isFieldInvalid('rua')" [controlErrors]="getControlErrorsList('rua')" formFieldName='rua'></app-form-field-message>
+
+      <ion-item class="bmd-form__item">
+        <ion-label position="floating">Número</ion-label>
+        <ion-input type="text" formControlName="numero"></ion-input>
+      </ion-item>
+      <app-form-field-message *ngIf="isFieldInvalid('numero')" [controlErrors]="getControlErrorsList('numero')" formFieldName='numero'></app-form-field-message>
+
+      <ion-item class="bmd-form__item">
+        <ion-label position="floating">Complemento</ion-label>
+        <ion-input type="text" formControlName="complemento"></ion-input>
+      </ion-item>
+
+      <ion-item class="bmd-form__item">
+        <ion-label position="floating">Ponto de referência</ion-label>
+        <ion-input type="text" formControlName="info"></ion-input>
+      </ion-item>
+
+      <ion-item class="bmd-form__item">
+        <ion-label position="floating">Bairro</ion-label>
+        <ion-input type="text" formControlName="bairro"></ion-input>
+      </ion-item>
+      <app-form-field-message *ngIf="isFieldInvalid('bairro')" [controlErrors]="getControlErrorsList('bairro')" formFieldName='bairro'></app-form-field-message>
+
+      <ion-item class="bmd-form__item">
+        <ion-label position="floating">Cidade</ion-label>
+        <ion-input type="text" formControlName="cidade"></ion-input>
+      </ion-item>
+      <app-form-field-message *ngIf="isFieldInvalid('cidade')" [controlErrors]="getControlErrorsList('cidade')" formFieldName='cidade'></app-form-field-message>
+
+      <ion-item class="bmd-form__item">
+        <ion-label position="floating">Estado</ion-label>
+        <ion-input type="text" formControlName="estado"></ion-input>
+      </ion-item>
+      <app-form-field-message *ngIf="isFieldInvalid('estado')" [controlErrors]="getControlErrorsList('estado')" formFieldName='estado'></app-form-field-message>
+
+    </ng-container>
+
     <ion-item class="bmd-form__item">
       <ion-label position="floating">Senha</ion-label>
       <ion-input type="password" formControlName="password"></ion-input>
