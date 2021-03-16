@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
+  {
+    path: 'form-field-message',
+    loadChildren: () => import('./shared/form-field-message/form-field-message.module').then( m => m.FormFieldMessagePageModule)
+  },
 
 ];
 

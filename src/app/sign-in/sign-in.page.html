@@ -1,31 +1,35 @@
-<ion-content class="wrapper__content ion-padding">
-  <form class="wrapper__content__login-form" [formGroup]="signInForm">
+<ion-content class="ion-padding">
+  <form class="bmd-form" [formGroup]="signInForm">
 
-    <section class="wrapper__content__login-form__img__wrapper">
-      <img 
-        src="../../assets/images/auth-icon.png" 
-        class="wrapper__content__login-form__img__wrapper__img"
-        alt="Logotipo da Bemed">
-    </section>
-
-    <ion-item class="wrapper__content__login-form__item">
+    <ion-item class="bmd-form__item">
       <ion-label position="floating">Nome</ion-label>
       <ion-input formControlName="name"></ion-input>
     </ion-item>
 
-    <ion-item class="wrapper__content__login-form__item">
+    <ion-item class="bmd-form__item">
       <ion-label position="floating">E-mail</ion-label>
       <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
 
-    <ion-item class="wrapper__content__login-form__item">
+    <ion-item class="bmd-form__item">
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input type="tel" formControlName="phone" [brmasker]="{phone: true}"></ion-input>
+    </ion-item>
+
+    <ion-item class="bmd-form__item">
+      <ion-label position="floating">CPF</ion-label>
+      <ion-input type="text" formControlName="cpf" [brmasker]="{mask: '999.999.999-99', type: 'num', len: 14}"></ion-input>
+    </ion-item>
+    <app-form-field-message *ngIf="isFieldInvalid('cpf')" [controlErrors]="getControlErrorsList('cpf')" formFieldName='cpf'></app-form-field-message>
+
+    <ion-item class="bmd-form__item">
       <ion-label position="floating">Senha</ion-label>
       <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
 
-    <ion-item class="wrapper__content__login-form__item">
+    <ion-item class="bmd-form__item">
       <ion-label position="floating">Confirme sua senha</ion-label>
-      <ion-input type="password" formControlName="passwordConfirm"></ion-input>
+      <ion-input type="password" formControlName="passwordConfirm" [pattern]="signInForm.get('password').value"></ion-input>
     </ion-item>
 
     <ion-button 

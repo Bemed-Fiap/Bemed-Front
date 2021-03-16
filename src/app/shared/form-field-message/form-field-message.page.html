@@ -1,0 +1,8 @@
+<div class="form-field-message">
+  <ul class="form-field-message__list">
+    <li class="form-field-message__item" *ngFor="let error of getValidationsErrors()">
+      <ion-icon name="alert-circle-outline" class="form-field-message__icon"></ion-icon>
+      <span class="form-field-message__text">{{error}}</span>
+    </li>
+  </ul>
+</div>
