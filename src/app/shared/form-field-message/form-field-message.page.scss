@@ -1,0 +1,5 @@
+.form-field-message {color: red; font-size: 80%;
+    &__list {list-style: none; margin: 0; padding: 0;}
+    &__item {padding: 5px 0 5px 1rem; display: flex; flex-direction: row;}
+    &__icon {opacity: .5; vertical-align: text-top; padding: .5% 1% 0 0; flex-basis: content;}
+}
