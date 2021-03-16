@@ -18,6 +18,9 @@ const routes: Routes = [
       {
         path: 'map',
         loadChildren: () => import('./tabs/map/map.module').then( m => m.MapPageModule)
+      }, {
+        path: '',
+        redirectTo: 'home'
       }
     ]
   },
