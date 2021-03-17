@@ -10,7 +10,7 @@ export class ViacepService {
   ) { }
 
   getAddress(cep: string): Promise<ViacepResponseInterface> {
-    return fetch(`http://viacep.com.br/ws/${cep}/json`)
+    return fetch(this._endpoint(cep))
       .then(response => response.json())
       .catch(error => console.error(`Erro ao consultar o viacep: ${error.status}: ${error.error}. headers: ${error.headers}`));
   }
