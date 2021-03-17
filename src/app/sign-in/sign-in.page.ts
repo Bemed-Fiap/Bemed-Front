@@ -22,6 +22,7 @@ export class SignInPage implements OnInit {
   private _buildForm(): void {
     this.signInForm = this._fb.group({
       name: new FormControl('', Validators.compose([Validators.required])),
+      lastname: new FormControl('', Validators.compose([Validators.required])),
       email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
       phone: new FormControl('', Validators.compose([Validators.required, Validators.minLength(14)])),
       cpf: new FormControl('', Validators.compose([Validators.required, Validators.minLength(14)])),

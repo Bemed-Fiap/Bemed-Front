@@ -1,3 +1,6 @@
-.bmd-form { position: relative;
+.bmd-form { position: relative; margin-bottom: 1rem;
     &__item {margin-top: 1rem; position: relative;}
+    &__button {margin: 1rem 0; width: 100%;
+        &:first-of-type {margin-top: 2rem;}
+    }
 }
