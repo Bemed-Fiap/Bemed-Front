@@ -8,7 +8,7 @@ import { CanLoadIntro } from './intro/services/intro-canload.service';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'app',
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomePageModule),
   },
@@ -22,7 +22,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./intro/intro.module').then((m) => m.IntroPageModule),
     canLoad: [CanLoadIntro]
-  },  {
+  },
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },

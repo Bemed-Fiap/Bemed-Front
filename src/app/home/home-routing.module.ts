@@ -6,7 +6,24 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
-  }
+    children: [
+      {
+        path: 'home',
+        loadChildren: () => import('./tabs/home/home.module').then( m => m.HomePageModule)
+      },
+      {
+        path: 'wallet',
+        loadChildren: () => import('./tabs/wallet/wallet.module').then( m => m.WalletPageModule)
+      },
+      {
+        path: 'map',
+        loadChildren: () => import('./tabs/map/map.module').then( m => m.MapPageModule)
+      }, {
+        path: '',
+        redirectTo: 'home'
+      }
+    ]
+  },
 ];
 
 @NgModule({
