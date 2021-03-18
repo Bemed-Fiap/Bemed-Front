@@ -1,0 +1,12 @@
+.wrapper__content {
+    &__header {
+      &__toolbar {
+        margin: 1rem 0 1rem;
+        padding-bottom: .5rem;
+        &__avatar {
+          margin-left: 1rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
