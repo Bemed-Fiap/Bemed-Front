@@ -23,5 +23,24 @@ export const formFieldMessages = {
     passwordConfirm: {
         required: 'Confirme sua senha de acesso ao aplicativo.',
         pattern: 'A confirmação está diferente da senha informada.'
-    }
+    },
+    cep: {
+        required: 'Informe o CEP do seu endereço.',
+        minlength: 'Informe o um CEP válido. Ex: 12345-678.'
+    },
+    rua: {
+        required: 'Informe o logadouro do seu endereço.'
+    },
+    numero: {
+        required: 'Informe o número/altura do seu endereço.'
+    },
+    bairro: {
+        required: 'Informe o bairro do seu endereço.'
+    },
+    cidade: {
+        required: 'Informe a cidade do seu endereço.'
+    },
+    estado: {
+        required: 'Informe o estado do seu endereço.'
+    },
 }
