@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Pages } from '../pages.enum';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ export class HomePage {
           text: 'SIM',
           role: 'yes',
           handler: () => {
-            this._router.navigate(['']);
+            this._router.navigate([Pages.auth]);
           }
         }
       ]

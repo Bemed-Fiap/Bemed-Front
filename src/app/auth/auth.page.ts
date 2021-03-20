@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Pages } from '../pages.enum';
 
 @Component({
   selector: 'app-auth',
@@ -24,11 +25,11 @@ export class AuthPage implements OnInit {
   }
 
   public doLogin(): void {
-    this._router.navigate(['app']);
+    this._router.navigate([Pages.home]);
   };
 
   public createAccount(): void {
-    this._router.navigate(['sign-in']);
+    this._router.navigate([Pages.signUp]);
   }
 
 }

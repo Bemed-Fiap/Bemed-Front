@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Pages } from '../pages.enum';
 
 @Component({
   selector: 'app-intro',
@@ -15,7 +16,7 @@ export class IntroPage implements OnInit {
   ngOnInit() { }
 
   public setIntroductionOnLocalstorage(): void {
-    this._router.navigate(['auth']).then(_ => localStorage.setItem('didIntro', JSON.stringify(true)));
+    this._router.navigate([Pages.auth]).then(_ => localStorage.setItem('didIntro', JSON.stringify(true)));
   }
 
 }
