@@ -24,8 +24,11 @@ export class AuthPage implements OnInit {
   }
 
   public doLogin(): void {
-    console.log(this.loginForm.value);
     this._router.navigate(['app']);
   };
+
+  public createAccount(): void {
+    this._router.navigate(['sign-in']);
+  }
 
 }
