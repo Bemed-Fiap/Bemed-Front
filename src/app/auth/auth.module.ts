@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AuthPageRoutingModule } from './auth-routing.module';
 
 import { AuthPage } from './auth.page';
+import { FormFieldMessagePageModule } from '../shared/form-field-message/form-field-message.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { AuthPage } from './auth.page';
     IonicModule,
     AuthPageRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormFieldMessagePageModule
   ],
   declarations: [AuthPage]
 })

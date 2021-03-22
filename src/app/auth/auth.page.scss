@@ -1,28 +1,9 @@
-.wrapper__content {
-  padding: 0 1.5rem;
-  text-align: center;
+@import 'modules/forms';
 
-  &__login-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    &__img__wrapper {
-      text-align: center;
-
-      &__img {
-        max-width: 60%;
-        padding: 1rem 1rem 5rem;        
-      }
-    }
-
-    &__item {
-      margin-bottom: 2rem;
-    }
-  }
-
-  &__button {
-    width: 100%;
+.login-form {
+  &__img {
+    margin: 0 auto;
+    max-width: 60%;
+    padding: 1rem 1rem 5rem;        
   }
 }
