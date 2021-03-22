@@ -1,26 +1,27 @@
 <ion-content class="wrapper__content ion-padding">
-  <form class="wrapper__content__login-form" [formGroup]="loginForm">
+  <form class="bmd-form login-form" [formGroup]="loginForm">
 
-    <section class="wrapper__content__login-form__img__wrapper">
+    <section class="login-form__img">
       <img 
-        src="../../assets/images/auth-icon.png" 
-        class="wrapper__content__login-form__img__wrapper__img"
+        src="../../assets/images/auth-icon.png"
         alt="Logotipo da Bemed">
     </section>
 
-    <ion-item class="wrapper__content__login-form__item">
+    <ion-item class="bmd-form__item">
       <ion-label position="floating">Login</ion-label>
       <ion-input formControlName="login"></ion-input>
     </ion-item>
+    <app-form-field-message *ngIf="isFieldInvalid('login')" [controlErrors]="getControlErrorsList('login')" formFieldName='login'></app-form-field-message>
 
-    <ion-item class="wrapper__content__login-form__item">
+    <ion-item class="bmd-form__item">
       <ion-label position="floating">Senha</ion-label>
       <ion-input type="password" formControlName="password"></ion-input>
     </ion-item>
+    <app-form-field-message *ngIf="isFieldInvalid('password')" [controlErrors]="getControlErrorsList('password')" formFieldName='password'></app-form-field-message>
 
     <ion-button 
       color="tertiary" 
-      class="wrapper__content__button" 
+      class="bmd-form__button" 
       [disabled]="loginForm.invalid"
       (click)="doLogin()">
       Entrar
@@ -28,7 +29,7 @@
     <ion-button 
       color="danger" 
       fill="outline" 
-      class="wrapper__content__button"
+      class="bmd-form__button"
       (click)="createAccount()">
       Quero criar uma conta
     </ion-button>

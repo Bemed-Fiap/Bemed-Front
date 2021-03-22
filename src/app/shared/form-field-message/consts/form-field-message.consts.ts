@@ -7,18 +7,22 @@ export const formFieldMessages = {
     },
     email: {
         required: 'Informe seu endereço de e-mail.',
-        email: 'Informe um endereço de e-mail válido.',
+        email: 'Informe um endereço de e-mail válido.'
     },
     phone: {
         required: 'Informe seu telefone fixo ou móvel.',
         minlength: 'Informe um número de telefone válido com DDD.',
+    },
+    login: {
+        required: 'Informe seu e-mail de login.',
+        email: 'Informe um endereço de e-mail válido.'
     },
     cpf: {
         required: 'Informe seu CPF.',
         minlength: 'CPF incompleto.'
     },
     password: {
-        required: 'Cadastre sua senha de acesso ao aplicativo.'
+        required: 'Informe sua senha de acesso.'
     },
     passwordConfirm: {
         required: 'Confirme sua senha de acesso ao aplicativo.',
