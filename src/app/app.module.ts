@@ -4,9 +4,8 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IntroPageModule } from './intro/intro.module';
+import { CanLoadIntro } from './intro/services/intro-canload.service';
 import { SignInPageModule } from './sign-in/sign-in.module';
-
 
 
 @NgModule({
@@ -16,10 +15,9 @@ import { SignInPageModule } from './sign-in/sign-in.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    IntroPageModule,
     SignInPageModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CanLoadIntro],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

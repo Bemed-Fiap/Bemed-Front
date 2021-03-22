@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { getControlErrorsList, isFieldInvalid } from '../shared/form-field-message/utils/form-field-message.utils';
+import { Pages } from '../pages.enum';
 
 @Component({
   selector: 'app-auth',
@@ -25,8 +26,7 @@ export class AuthPage implements OnInit {
   }
 
   public doLogin(): void {
-    console.log(this.loginForm.value);
-    this._router.navigate(['app']);
+    this._router.navigate([Pages.home]);
   };
 
   public isFieldInvalid(formControlName: string): boolean {
@@ -37,6 +37,10 @@ export class AuthPage implements OnInit {
   public getControlErrorsList(formControlName: string): string[] {
     const control = this.loginForm.get(formControlName);
     return getControlErrorsList(control);
+  }
+
+  public createAccount(): void {
+    this._router.navigate([Pages.signUp]);
   }
 
 }
