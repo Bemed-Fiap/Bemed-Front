@@ -47,6 +47,7 @@ export class MapPage implements OnInit {
 
     Leaflet
       .marker(userLocation, { icon: userIcon })
+      .bindPopup('Você está aqui')
       .addTo(this.map);
 
       drugstores.forEach(drugstore => {
