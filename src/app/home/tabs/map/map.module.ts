@@ -9,6 +9,8 @@ import { HeaderPageModule } from '../components/header/header.module';
 
 import { MapPage } from './map.page';
 
+import { GeolocationService } from '../services/geolocation.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +19,9 @@ import { MapPage } from './map.page';
     MapPageRoutingModule,
     HeaderPageModule
   ],
-  declarations: [MapPage]
+  declarations: [MapPage],
+  providers: [
+    GeolocationService
+  ]
 })
 export class MapPageModule {}

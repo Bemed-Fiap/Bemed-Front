@@ -1,8 +1,8 @@
 {
   "name": "bemed",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Adler Coelho | Beatriz Bafini | Kelvin Marque | Michel Santana",
+  "homepage": "https://bemed.com.br",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -24,6 +24,8 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "@ionic-native/core": "^5.31.1",
+    "@ionic-native/geolocation": "^5.31.1",
     "@ionic/angular": "^5.5.2",
     "@types/leaflet": "^1.7.0",
     "br-mask": "0.0.10",
@@ -45,6 +47,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-geolocation": "^4.1.0",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -73,7 +76,8 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-geolocation": {}
     },
     "platforms": [
       "android"

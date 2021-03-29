@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CanLoadIntro } from './intro/services/intro-canload.service';
 import { SignInPageModule } from './sign-in/sign-in.module';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +17,7 @@ import { SignInPageModule } from './sign-in/sign-in.module';
     AppRoutingModule,
     SignInPageModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CanLoadIntro],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CanLoadIntro, Geolocation],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

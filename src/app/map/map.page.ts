@@ -18,7 +18,8 @@ export class MapPage implements OnInit {
   }
 
   private _initMap(): void {
-    this.map = leaflet.map("map").setView([-51.19903564453125, -24.369615456124507], 7);
+    this.map = leaflet.map("map").setView([-23.929059545589364, -46.38076761434102], 16)
+
 
     const tiles = leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
