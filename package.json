@@ -10,8 +10,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "emulate:android:virtual": "ionic cordova emulate android -l",
-    "emulate:android:device": "ionic cordova run android -address 0.0.0.0 --port 8100 --no-native-run -l"
+    "emulate:android:virtual": "ionic cordova emulate android",
+    "emulate:android:virtual:watch": "ionic cordova emulate android -l",
+    "emulate:android:device": "ionic cordova run android -address 0.0.0.0 --port 8100 --no-native-run",
+    "emulate:android:device:watch": "ionic cordova run android -address 0.0.0.0 --port 8100 --no-native-run -l",
+    "build:android:test": "ionic cordova build android"
   },
   "private": true,
   "dependencies": {
