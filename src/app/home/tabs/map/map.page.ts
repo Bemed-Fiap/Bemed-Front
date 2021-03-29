@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import * as leaflet from 'leaflet';
-import * as geojson from 'geojson';
 import { GeolocationService } from '../services/geolocation.service';
-import { GeolocationPosition } from 'src/shared/interfaces/geolocation.interface';
+import { Utils } from 'src/app/shared/Utils';
+
+import * as leaflet from 'leaflet';
+import { GeolocationPosition } from 'src/app/shared/interfaces/geolocation.interface';
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
@@ -26,13 +27,24 @@ export class MapPage implements OnInit {
     });
 
     tiles.addTo(this.map);
+    this._tryToGetUserGeolocation();
+    setTimeout(() => this.map.invalidateSize(), 0);    
+  }
 
-    setTimeout(() => this.map.invalidateSize(), 0);
-
+  private _tryToGetUserGeolocation(): void {
     this._geoService.getcurrentPosition().then((resp: GeolocationPosition) => {
-      const { latitude, longitude } = resp.coords;
-      this.map.setView([latitude, longitude]);
-    });
+      const { longitude, latitude } = resp.coords;
+
+      const userLocation: leaflet.LatLng = leaflet.GeoJSON.coordsToLatLng([longitude, latitude]);
+      const userIcon = Utils.setPinIcon('user');
+
+      this.map.setView(leaflet.GeoJSON.coordsToLatLng([longitude, latitude]));
+
+      leaflet
+        .marker(userLocation, { icon: userIcon })
+        .bindPopup('Você está aqui!')
+        .addTo(this.map);
+    });    
   }
 
 }

@@ -2,7 +2,14 @@
   &__header {
     &__toolbar {
       margin: 1rem 0 1rem;
-      padding-bottom: .5rem;
+      padding-bottom: 0.5rem;
+
+      &__label {
+        &__title,
+        &__subtitle {
+          text-align: left;
+        }
+      }
 
       &__avatar {
         margin-left: 1rem;
