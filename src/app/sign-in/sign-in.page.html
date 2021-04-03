@@ -1,12 +1,29 @@
 <ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-checkbox color="danger" [(ngModel)]="isDrugstore" (ngModelChange)="onChangeIsDrugstore($event)" slot="start"></ion-checkbox>
+    <ion-label noBorder >Sou uma farmácia.</ion-label>
+  </ion-item>
+  
   <form class="bmd-form" [formGroup]="signInForm">
-
-    <ion-card-subtitle>
-      * Campo obrigatório.
-    </ion-card-subtitle>
-
-    <ion-row>
+    <ion-row [hidden]="!isDrugstore">
       <ion-col>
+        <ion-item class="bmd-form__item">
+          <ion-label position="floating">Nome Fantasia</ion-label>
+          <ion-input formControlName="fantasyName"></ion-input>
+        </ion-item>
+      </ion-col>      
+    </ion-row>
+    <ion-row [hidden]="!isDrugstore">
+      <ion-col>
+        <ion-item class="bmd-form__item">
+          <ion-label position="floating">Razão Social</ion-label>
+          <ion-input formControlName="companyName"></ion-input>
+        </ion-item>
+      </ion-col>      
+    </ion-row>    
+    <ion-row [hidden]="isDrugstore">
+      <ion-col>    
         <ion-item class="bmd-form__item">
           <ion-label position="floating">Nome*</ion-label>
           <ion-input formControlName="name"></ion-input>
@@ -34,14 +51,27 @@
     </ion-item>
     <app-form-field-message *ngIf="isFieldInvalid('phone')" [controlErrors]="getControlErrorsList('phone')" formFieldName='phone'></app-form-field-message>
 
-    <ion-item class="bmd-form__item">
-      <ion-label position="floating">CPF*</ion-label>
-      <ion-input type="text" formControlName="cpf" [brmasker]="{mask: '999.999.999-99', type: 'num', len: 14}"></ion-input>
-    </ion-item>
-    <app-form-field-message *ngIf="isFieldInvalid('cpf')" [controlErrors]="getControlErrorsList('cpf')" formFieldName='cpf'></app-form-field-message>
+    <ion-row [hidden]="!isDrugstore">
+      <ion-col>
+        <ion-item class="bmd-form__item">
+          <ion-label position="floating">CNPJ*</ion-label>
+          <ion-input type="text" formControlName="cnpj" [brmasker]="{mask: '99.999.999/9999-99', type: 'num', len: 18}"></ion-input>
+        </ion-item>
+        <app-form-field-message *ngIf="isFieldInvalid('cnpj')" [controlErrors]="getControlErrorsList('cnpj')" formFieldName='cnpj'></app-form-field-message>
+      </ion-col>
+    </ion-row>
+
+    <ion-row [hidden]="isDrugstore">
+      <ion-col>
+        <ion-item class="bmd-form__item">
+          <ion-label position="floating">CPF*</ion-label>
+          <ion-input type="text" formControlName="cpf" [brmasker]="{mask: '999.999.999-99', type: 'num', len: 14}"></ion-input>
+        </ion-item>
+        <app-form-field-message *ngIf="isFieldInvalid('cpf')" [controlErrors]="getControlErrorsList('cpf')" formFieldName='cpf'></app-form-field-message>
+      </ion-col>
+    </ion-row>
 
     <ng-container formGroupName="address">
-
       <ion-item class="bmd-form__item">
         <ion-label position="floating">CEP*</ion-label>
         <ion-input type="text" formControlName="cep" [brmasker]="{mask: '99999-999', type: 'num', len: 9}"></ion-input>
@@ -49,7 +79,7 @@
       <app-form-field-message *ngIf="isFieldInvalid('cep')" [controlErrors]="getControlErrorsList('cep')" formFieldName='cep'></app-form-field-message>
 
       <ion-item class="bmd-form__item">
-        <ion-label position="floating">Logadouro*</ion-label>
+        <ion-label position="floating">Logradouro*</ion-label>
         <ion-input type="text" formControlName="rua"></ion-input>
       </ion-item>
       <app-form-field-message *ngIf="isFieldInvalid('rua')" [controlErrors]="getControlErrorsList('rua')" formFieldName='rua'></app-form-field-message>
@@ -116,10 +146,9 @@
       color="tertiary" 
       class="bmd-form__button" 
       [disabled]="signInForm.invalid"
-      (click)="setIntroductionOnLocalstorage()">
+      (click)="save()">
       Cadastrar
     </ion-button>
-    
   </form>
 
 </ion-content>

@@ -2,6 +2,12 @@ export const formFieldMessages = {
     name: {
         required: 'Informe seu Nome.',
     },
+    fantasyName: {
+        require: 'Informe o Nome Fantasia'
+    },
+    companyName: {
+        require: 'Informe a Razão Social'
+    },
     lastname: {
         required: 'Informe seu Sobrenome.',
     },
@@ -21,6 +27,10 @@ export const formFieldMessages = {
         required: 'Informe seu CPF.',
         minlength: 'CPF incompleto.'
     },
+    cnpj: {
+        required: 'Informe seu CNPJ.',
+        minlength: 'CNPJ incompleto.'
+    },    
     password: {
         required: 'Informe sua senha de acesso.'
     },
