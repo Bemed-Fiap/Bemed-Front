@@ -21,6 +21,9 @@ export class SignInPage implements OnInit {
   public addressFormGroup: FormGroup;
   public isDrugstore = false;
 
+  private _drugeStoreExtraFields = ['fantasyName', 'companyName', 'cnpj'];
+  private _clientExtraFields = ['name', 'lastname', 'cpf'];
+
   constructor(
     private _fb: FormBuilder,
     private _viacepService: ViacepService
@@ -29,6 +32,47 @@ export class SignInPage implements OnInit {
   ngOnInit() {
     this._buildForm();
     this._listenCepChange();
+  }
+
+  public isFieldInvalid(formControlName: string): boolean {
+    const control =
+      this.signInForm.get(formControlName) ||
+      this.addressFormGroup.get(formControlName);
+    return isFieldInvalid(control);
+  }
+
+  public getControlErrorsList(formControlName: string): string[] {
+    const control =
+      this.signInForm.get(formControlName) ||
+      this.addressFormGroup.get(formControlName);
+    return getControlErrorsList(control);
+  }
+
+  public save(): void {
+    console.log('valores', this.signInForm.value);
+    if (this.isDrugstore) {
+      console.log('cadastro de farmácia...');
+      return;
+    }
+
+    console.log('cadastro de usuário...');
+  }
+
+  public onChangeIsDrugstore(isDrugstore: boolean): void {
+    if (isDrugstore) {
+        for (const field of this._clientExtraFields)
+          this._setRequiredValidatorOrClearValidators(field, 'clear');
+
+        for (const field of this._drugeStoreExtraFields)
+          this._setRequiredValidatorOrClearValidators(field, 'set');
+
+    } else {
+      for (const field of this._clientExtraFields)
+        this._setRequiredValidatorOrClearValidators(field, 'set');
+      
+      for (const field of this._drugeStoreExtraFields) 
+        this._setRequiredValidatorOrClearValidators(field, 'clear');
+    }
   }
 
   private _buildForm(): void {
@@ -89,48 +133,24 @@ export class SignInPage implements OnInit {
     });
   }
 
-  public isFieldInvalid(formControlName: string): boolean {
-    const control =
-      this.signInForm.get(formControlName) ||
-      this.addressFormGroup.get(formControlName);
-    return isFieldInvalid(control);
-  }
-
-  public getControlErrorsList(formControlName: string): string[] {
-    const control =
-      this.signInForm.get(formControlName) ||
-      this.addressFormGroup.get(formControlName);
-    return getControlErrorsList(control);
-  }
-
-  public save(): void {
-    if (this.isDrugstore) {
-      console.log('cadastro de farmácia...');
-      return;
-    }
-
-    console.log('cadastro de usuário...');
-  }
-
-  public onChangeIsDrugstore(isDrugstore: boolean): void {
-    if (isDrugstore) {
-      // desabilito required
-        // nome
-        this.signInForm.get('name').clearValidators()
-        this.signInForm.controls["name"].updateValueAndValidity();
-        // sobrenome
-        this.signInForm.get('lastname').clearValidators()
-        this.signInForm.controls["lastname"].updateValueAndValidity();
-        // cpf
-        this.signInForm.get('cpf').clearValidators()
-        this.signInForm.controls["cpf"].updateValueAndValidity();
-
-      // habilito required
-        // nome fantasia
-        // razão social
-        // cnpj
+  private _setRequiredValidatorOrClearValidators(field: string, type: 'clear' | 'set'): void {
+    if (type === 'set') {
+      switch (field) {
+        case 'cnpj':
+          this.signInForm.controls[field].setValidators([Validators.required, Validators.minLength(18)]);
+          break;
+        case 'cpf':
+          this.signInForm.controls[field].setValidators([Validators.required, Validators.minLength(14)]);
+          break;
+        default:
+          this.signInForm.controls[field].setValidators([Validators.required])
+          break;
+      }
+      
+      this.signInForm.controls[field].updateValueAndValidity();    
     } else {
-
+      this.signInForm.controls[field].clearValidators()
+      this.signInForm.controls[field].updateValueAndValidity();
     }
-  }  
+  }
 }

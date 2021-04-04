@@ -1,6 +1,6 @@
 <ion-content class="ion-padding">
-
-  <ion-item>
+  
+  <ion-item lines="none">
     <ion-checkbox color="danger" [(ngModel)]="isDrugstore" (ngModelChange)="onChangeIsDrugstore($event)" slot="start"></ion-checkbox>
     <ion-label noBorder >Sou uma farmácia.</ion-label>
   </ion-item>
@@ -9,7 +9,7 @@
     <ion-row [hidden]="!isDrugstore">
       <ion-col>
         <ion-item class="bmd-form__item">
-          <ion-label position="floating">Nome Fantasia</ion-label>
+          <ion-label position="floating">Nome Fantasia*</ion-label>
           <ion-input formControlName="fantasyName"></ion-input>
         </ion-item>
       </ion-col>      
@@ -17,7 +17,7 @@
     <ion-row [hidden]="!isDrugstore">
       <ion-col>
         <ion-item class="bmd-form__item">
-          <ion-label position="floating">Razão Social</ion-label>
+          <ion-label position="floating">Razão Social*</ion-label>
           <ion-input formControlName="companyName"></ion-input>
         </ion-item>
       </ion-col>      
