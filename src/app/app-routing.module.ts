@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'sign-up',
-    loadChildren: () => import('./sign-in/sign-in.module').then( m => m.SignInPageModule)
+    loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
   }
 ];
 

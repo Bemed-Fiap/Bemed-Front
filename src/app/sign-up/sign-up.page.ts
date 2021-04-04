@@ -4,7 +4,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Subject } from 'rxjs';
 import {
   getControlErrorsList,
   isFieldInvalid,
@@ -13,10 +12,10 @@ import { ViacepService } from './services/viacep.service';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './sign-in.page.html',
-  styleUrls: ['./sign-in.page.scss'],
+  templateUrl: './sign-up.page.html',
+  styleUrls: ['./sign-up.page.scss'],
 })
-export class SignInPage implements OnInit {
+export class SignUpPage implements OnInit {
   public signInForm: FormGroup;
   public addressFormGroup: FormGroup;
   public isDrugstore = false;
