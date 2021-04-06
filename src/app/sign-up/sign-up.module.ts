@@ -5,21 +5,21 @@ import { IonicModule } from '@ionic/angular';
 import { BrMaskerModule } from 'br-mask';
 import { FormFieldMessagePageModule } from '../shared/form-field-message/form-field-message.module';
 import { ViacepService } from './services/viacep.service';
-import { SignInPageRoutingModule } from './sign-in-routing.module';
-import { SignInPage } from './sign-in.page';
+import { SignUpPageRoutingModule } from './sign-up-routing.module';
+import { SignUpPage } from './sign-up.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SignInPageRoutingModule,
+    SignUpPageRoutingModule,
     FormsModule,
     BrMaskerModule,
     ReactiveFormsModule,
     FormFieldMessagePageModule
   ],
   providers: [ViacepService],
-  declarations: [SignInPage]
+  declarations: [SignUpPage]
 })
-export class SignInPageModule {}
+export class SignUpPageModule {}
