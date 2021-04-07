@@ -1,6 +1,7 @@
 export const formFieldMessages = {
     name: {
         required: 'Informe seu Nome.',
+        minlength: 'CPF/CNPJ incompleto.'
     },
     fantasyName: {
         require: 'Informe o Nome Fantasia'

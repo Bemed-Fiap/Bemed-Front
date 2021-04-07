@@ -22,4 +22,4 @@ import { SignUpPage } from './sign-up.page';
   providers: [ViacepService],
   declarations: [SignUpPage]
 })
-export class SignUpPageModule {}
+export class SignUpPageModule { }

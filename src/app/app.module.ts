@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CanLoadIntro } from './intro/services/intro-canload.service';
 import { SignUpPageModule } from './sign-up/sign-up.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     IonicModule.forRoot(),
     AppRoutingModule,
     SignUpPageModule,
+    HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CanLoadIntro, Geolocation],
   bootstrap: [AppComponent],

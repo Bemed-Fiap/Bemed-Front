@@ -17,7 +17,7 @@ import { FormFieldMessagePageModule } from '../shared/form-field-message/form-fi
     AuthPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FormFieldMessagePageModule
+    FormFieldMessagePageModule,
   ],
   declarations: [AuthPage]
 })
