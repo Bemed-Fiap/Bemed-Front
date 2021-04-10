@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -8,6 +8,7 @@ import {
 } from '../shared/form-field-message/utils/form-field-message.utils';
 import { Pages } from '../pages.enum';
 import { AuthService } from './auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-auth',
@@ -20,8 +21,9 @@ export class AuthPage implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _router: Router,
-    private authService: AuthService
-  ) {}
+    private _authService: AuthService,
+    private _alertController: AlertController
+  ) { }
 
   ngOnInit() {
     this.loginForm = this._fb.group({
@@ -37,13 +39,18 @@ export class AuthPage implements OnInit {
   }
 
   public doLogin(): void {
-    this.authService.doLogin(this.loginForm.value).subscribe(
+    this._authService.doLogin(this.loginForm.value).subscribe(
       (res) => {
-        console.log('Login: ', res);
+        this._authService.currentAuth = res;
         this._router.navigate([Pages.home]);
       },
       (error: HttpErrorResponse) => {
-        console.log(error);
+        let message = null;
+
+        if (error.status === 401 || error.status === 403)
+          message = `Usuário ou senha inválido(s).`;
+
+        this._showErrorAlert(message);
       }
     );
   }
@@ -60,5 +67,17 @@ export class AuthPage implements OnInit {
 
   public createAccount(): void {
     this._router.navigate([Pages.signUp]);
+  }
+
+  async _showErrorAlert(message?: string) {
+    const alert = await this._alertController.create({
+      header: 'Houve um erro',
+      message: message
+        ? message
+        : `Um erro inesperado aconteceu, tente novamente mais tarde.`,
+      buttons: ['Tudo bem'],
+    });
+
+    await alert.present();
   }
 }
