@@ -71,13 +71,15 @@ export class MapPage implements OnInit {
 
   private _drawPinsFromDrugstoreList(drugstoreList: [{}]): void {
     for (const drug of drugstoreList) {
+      
       const [ longitude, latitude ] = drug['location'];
+      
       const { nome, endereco, cep, phone }: any = drug;
 
       leaflet
         .marker(
           leaflet.GeoJSON.coordsToLatLng(
-            [latitude, longitude] as [number, number]
+            [longitude, latitude] as [number, number]
           ),
           { icon: Utils.setPinIcon('drugstore') }
         )

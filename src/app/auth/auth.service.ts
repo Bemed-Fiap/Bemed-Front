@@ -30,23 +30,24 @@ export class AuthService {
   }
 
   set currentAuth(authReponse: any) {
+    this._auth$.next({...authReponse });
     if (authReponse && authReponse.token) {
-      this.getUserInfo().subscribe((res) => {
-        console.log('res => ', res);
-        this._auth$.next(authReponse);
+      this._getUserInfo(authReponse.token).subscribe((res) => {
+        this._auth$.next({...res, ...authReponse });
       });
     }
-  }
-
-  private getUserInfo(): Observable<any> {
-    return this.http.post(this.URL_USER, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
   }
 
   get currentAuth() {
     return this._auth$.value;
   }
+
+  private _getUserInfo(onetoken: string): Observable<any> {
+    return this.http.get(this.URL_USER, {
+      headers: {
+        'Content-Type': 'application/json',
+        onetoken
+      },
+    });
+  }  
 }

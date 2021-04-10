@@ -18,10 +18,10 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    const isLogged = this.authService.currentAuth;
+    const currentAuth = this.authService.currentAuth;
 
-    if (Object.entries(isLogged).length) {
-      const token = isLogged['token'];
+    if (Object.entries(currentAuth).length) {
+      const token = currentAuth['token'];
       const reqWithHeader = req.clone({
         setHeaders: {
           'onetoken': token,
