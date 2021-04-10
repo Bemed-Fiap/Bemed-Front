@@ -20,7 +20,7 @@ export class AuthService {
   }): Observable<any> {
     const { login: documento, password: senha } = loginValues;
 
-    return this.http.post(this.URL, loginValues, {
+    return this.http.post(this.URL, {}, {
       headers: {
         'Content-Type': 'application/json',
         documento,
@@ -44,5 +44,9 @@ export class AuthService {
         'Content-Type': 'application/json',
       },
     });
+  }
+
+  get currentAuth() {
+    return this._auth$.value;
   }
 }
