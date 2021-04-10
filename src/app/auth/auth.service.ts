@@ -1,10 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  
   private readonly URL = `http://localhost:9978/login`;
+  private _auth$: BehaviorSubject<any> = new BehaviorSubject<any>({});
+
+  public auth$ = this._auth$.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -13,14 +17,18 @@ export class AuthService {
     password: string;
   }): Observable<any> {
 
-    const { login, password } = loginValues;
+    const { login: documento, password: senha } = loginValues;
 
     return this.http.post(this.URL, loginValues, {
       headers: {
         'Content-Type': 'application/json',
-        'documento': login,
-        'senha': password,
+        documento,
+        senha,
       },
     });
+  }
+
+  set currentAuth(authReponse: any) {
+    this._auth$.next(authReponse);
   }
 }
