@@ -19,7 +19,7 @@ export class AuthService {
 
     const { login: documento, password: senha } = loginValues;
 
-    return this.http.post(this.URL, loginValues, {
+    return this.http.post(this.URL, {}, {
       headers: {
         'Content-Type': 'application/json',
         documento,
