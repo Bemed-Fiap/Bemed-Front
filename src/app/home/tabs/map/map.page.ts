@@ -6,23 +6,28 @@ import * as leaflet from 'leaflet';
 
 import { GeolocationPosition } from 'src/app/shared/interfaces/geolocation.interface';
 import { data as stores } from './drugstore.mock';
+import { MapService } from './map.service';
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
   styleUrls: ['./map.page.scss'],
 })
 export class MapPage implements OnInit {
+  
   public map: leaflet.Map;
 
-  constructor(private _geoService: GeolocationService) {}
+  constructor(private _geoService: GeolocationService,
+    private readonly _mapService: MapService) {}
 
   ngOnInit() {
-    this._initMap();
+    this._mapService.getDrugstores().subscribe(res => {
+      this._initMap(res);
+    });
   }
 
-  private _initMap(): void {
+  private _initMap(drugstoreList: [{}]): void {
     this._tryToGetUserGeolocation();
-    this._drawPinsFromDrugstoreList();
+    this._drawPinsFromDrugstoreList(drugstoreList);
     setTimeout(() => this.map.invalidateSize(), 0);
   }
 
@@ -64,12 +69,17 @@ export class MapPage implements OnInit {
       });
   }
 
-  private _drawPinsFromDrugstoreList(): void {
-    for (const { nome, endereco, cep, phone, location } of stores) {
+  private _drawPinsFromDrugstoreList(drugstoreList: [{}]): void {
+    for (const drug of drugstoreList) {
+      
+      const [ longitude, latitude ] = drug['location'];
+      
+      const { nome, endereco, cep, phone }: any = drug;
+
       leaflet
         .marker(
           leaflet.GeoJSON.coordsToLatLng(
-            location as [number, number]
+            [longitude, latitude] as [number, number]
           ),
           { icon: Utils.setPinIcon('drugstore') }
         )

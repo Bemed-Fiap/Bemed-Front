@@ -39,7 +39,8 @@ export class AuthPage implements OnInit {
   }
 
   public doLogin(): void {
-    this._authService.doLogin(this.loginForm.value).subscribe(
+    this._authService.doLogin(this.loginForm.value)
+    .subscribe(
       (res) => {
         this._authService.currentAuth = res;
         this._router.navigate([Pages.home]);
