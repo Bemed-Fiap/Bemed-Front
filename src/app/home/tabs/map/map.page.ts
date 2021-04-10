@@ -6,6 +6,7 @@ import * as leaflet from 'leaflet';
 
 import { GeolocationPosition } from 'src/app/shared/interfaces/geolocation.interface';
 import { data as stores } from './drugstore.mock';
+import { MapService } from './map.service';
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
@@ -14,10 +15,14 @@ import { data as stores } from './drugstore.mock';
 export class MapPage implements OnInit {
   public map: leaflet.Map;
 
-  constructor(private _geoService: GeolocationService) {}
+  constructor(private _geoService: GeolocationService,
+    private readonly _mapService: MapService) {}
 
   ngOnInit() {
     this._initMap();
+    this._mapService.getDrugstores().subscribe(res => {
+      console.log('farmacias', res);
+    })
   }
 
   private _initMap(): void {

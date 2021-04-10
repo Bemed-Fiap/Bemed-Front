@@ -31,4 +31,8 @@ export class AuthService {
   set currentAuth(authReponse: any) {
     this._auth$.next(authReponse);
   }
+
+  get currentAuth() {
+    return this._auth$.value;
+  }
 }

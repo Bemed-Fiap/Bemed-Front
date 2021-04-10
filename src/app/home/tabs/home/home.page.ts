@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  public currentAuth$: Observable<any> = new Observable();
+
+  constructor(
+    private readonly _authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.currentAuth$ = this._authService.auth$;
   }
 
 }
