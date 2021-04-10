@@ -1,21 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { AuthService } from '../auth/auth.service';
 import { Pages } from '../pages.enum';
+import { AuthService } from '../auth/auth.service'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-drugstore',
+  templateUrl: './drugstore.page.html',
+  styleUrls: ['./drugstore.page.scss'],
 })
-export class HomePage {
+export class DrugstorePage implements OnInit {
 
   constructor(
     private _router: Router,
     private _alertController: AlertController,
     private _authService: AuthService
-  ) {}
+  ) { }
+
+  ngOnInit() {
+  }
 
   public async logout(): Promise<any> {
     const alert = await this._alertController.create({
