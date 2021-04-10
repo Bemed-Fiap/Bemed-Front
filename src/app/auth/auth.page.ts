@@ -73,14 +73,8 @@ export class AuthPage implements OnInit {
   }
 
   public showOrHidePass(): void {
-    if (this.type === 'password') {
-      this.type = 'text';
-      this.iconEye = 'eye';
-    } else {
-      this.type = 'password';
-      this.iconEye = 'eye-off';
-    }
-
+    this.type = this.type === 'password' ? 'text' : 'password';
+    this.iconEye = this.iconEye === 'eye' ? 'eye-off' : 'eye';
   }
 
   async _showErrorAlert(message?: string) {
