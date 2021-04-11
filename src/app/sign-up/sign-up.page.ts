@@ -1,13 +1,14 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Pages } from '../pages.enum';
 import {
   getControlErrorsList,
   isFieldInvalid,
 } from '../shared/form-field-message/utils/form-field-message.utils';
+import { SignUpService } from './services/sign-up.service';
 import { ViacepService } from './services/viacep.service';
 
 @Component({
@@ -20,13 +21,16 @@ export class SignUpPage implements OnInit {
   public addressFormGroup: FormGroup;
   public isDrugstore = false;
 
-  private _drugeStoreExtraFields = ['fantasyName', 'companyName', 'cnpj'];
-  private _clientExtraFields = ['name', 'lastname', 'cpf'];
+  private _drugeStoreExtraFields = ['nomeFantasia', 'razao', 'cnpj'];
+  private _clientExtraFields = ['nome', 'sobrenome', 'cpf'];
 
   constructor(
-    private _fb: FormBuilder,
-    private _viacepService: ViacepService
-  ) {}
+    private readonly _fb: FormBuilder,
+    private readonly _viacepService: ViacepService,
+    private readonly _signUpService: SignUpService,
+    private readonly _alertController: AlertController,
+    private readonly router: Router
+  ) { }
 
   ngOnInit() {
     this._buildForm();
@@ -47,29 +51,18 @@ export class SignUpPage implements OnInit {
     return getControlErrorsList(control);
   }
 
-  public save(): void {
-    console.log('valores', this.signInForm.value);
-    if (this.isDrugstore) {
-      console.log('cadastro de farmácia...');
-      return;
-    }
-
-    console.log('cadastro de usuário...');
-  }
-
   public onChangeIsDrugstore(isDrugstore: boolean): void {
     if (isDrugstore) {
-        for (const field of this._clientExtraFields)
-          this._setRequiredValidatorOrClearValidators(field, 'clear');
+      for (const field of this._clientExtraFields)
+        this._setRequiredValidatorOrClearValidators(field, 'clear');
 
-        for (const field of this._drugeStoreExtraFields)
-          this._setRequiredValidatorOrClearValidators(field, 'set');
-
+      for (const field of this._drugeStoreExtraFields)
+        this._setRequiredValidatorOrClearValidators(field, 'set');
     } else {
       for (const field of this._clientExtraFields)
         this._setRequiredValidatorOrClearValidators(field, 'set');
-      
-      for (const field of this._drugeStoreExtraFields) 
+
+      for (const field of this._drugeStoreExtraFields)
         this._setRequiredValidatorOrClearValidators(field, 'clear');
     }
   }
@@ -90,10 +83,10 @@ export class SignUpPage implements OnInit {
     });
 
     this.signInForm = this._fb.group({
-      name: this._fb.control('', Validators.required),
-      fantasyName: this._fb.control(''),
-      companyName: this._fb.control(''),
-      lastname: this._fb.control('', Validators.required),
+      nome: this._fb.control('', Validators.required),
+      nomeFantasia: this._fb.control(''),
+      razao: this._fb.control(''),
+      sobrenome: this._fb.control('', Validators.required),
       email: this._fb.control(
         '',
         Validators.compose([Validators.required, Validators.email])
@@ -104,12 +97,12 @@ export class SignUpPage implements OnInit {
       ),
       cpf: this._fb.control(
         '',
-        Validators.compose([Validators.required, Validators.minLength(14)])
+        Validators.compose([Validators.required, Validators.minLength(14) ])
       ),
-      cnpj: this._fb.control(''),
-      address: this.addressFormGroup,
-      password: this._fb.control('', Validators.required),
-      passwordConfirm: this._fb.control('', Validators.required),
+      cnpj: this._fb.control('', Validators.minLength(14)),
+      Endereco: this.addressFormGroup,
+      senha: this._fb.control('', Validators.required),
+      senhaConfirma: this._fb.control('', Validators.required)
     });
   }
 
@@ -132,24 +125,78 @@ export class SignUpPage implements OnInit {
     });
   }
 
-  private _setRequiredValidatorOrClearValidators(field: string, type: 'clear' | 'set'): void {
+  private _setRequiredValidatorOrClearValidators(
+    field: string,
+    type: 'clear' | 'set'
+  ): void {
     if (type === 'set') {
       switch (field) {
         case 'cnpj':
-          this.signInForm.controls[field].setValidators([Validators.required, Validators.minLength(18)]);
+          this.signInForm.controls[field].setValidators([
+            Validators.required,
+            Validators.minLength(18),
+          ]);
           break;
         case 'cpf':
-          this.signInForm.controls[field].setValidators([Validators.required, Validators.minLength(14)]);
+          this.signInForm.controls[field].setValidators([
+            Validators.required,
+            Validators.minLength(14),
+          ]);
           break;
         default:
-          this.signInForm.controls[field].setValidators([Validators.required])
+          this.signInForm.controls[field].setValidators([Validators.required]);
           break;
       }
-      
-      this.signInForm.controls[field].updateValueAndValidity();    
+
+      this.signInForm.controls[field].updateValueAndValidity();
     } else {
-      this.signInForm.controls[field].clearValidators()
+      this.signInForm.controls[field].clearValidators();
       this.signInForm.controls[field].updateValueAndValidity();
     }
   }
+
+  public async _showAlert(header?: string, message?: string) {
+    const alert = await this._alertController.create({
+      header: header ? header : 'Houve um erro',
+      message: message
+        ? message
+        : `Um erro inesperado aconteceu, tente novamente mais tarde.`,
+      buttons: ['Tudo bem'],
+    });
+
+    await alert.present();
+  }
+
+  public save(): void {
+    const deleteDrugstoreFields = ['razao', 'nomeFantasia'];
+    const deletePersonFiels = ['nome', 'sobrenome'];
+    let fieldToDelete = this.isDrugstore
+      ? deletePersonFiels
+      : deleteDrugstoreFields;
+
+      if (this.isDrugstore) {
+        this.signInForm.value['cnpj'] = this.signInForm.value['cnpj'].replace(/[^\d]/g, '');
+      } else {
+        this.signInForm.value['documento'] = this.signInForm.value['cpf'].replace(/[^\d]/g, '');
+        delete this.signInForm.value['cnpj'];
+      }
+
+      delete this.signInForm.value['cpf'];
+
+    for (const key of fieldToDelete)
+      Reflect.deleteProperty(this.signInForm.value, key);
+
+    this._signUpService.cadaster(this.signInForm.value).subscribe(
+      (res) => {
+        this._showAlert('Sucesso', 'Cadastro realizado com sucesso.').then(_ => {
+          this.router.navigate([Pages.auth]);
+        });
+      },
+      (error: HttpErrorResponse) => {
+        console.log('error', error);
+        this._showAlert();
+      }
+    );
+  }
+  
 }
