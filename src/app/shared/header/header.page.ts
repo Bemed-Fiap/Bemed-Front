@@ -24,14 +24,15 @@ export class HeaderPage implements OnInit {
 
     this.auth$.subscribe(data => {
 
-      this.nome = data.nome || 'USUÁRIO DESCONHECIDO';
-      this.sobrenome = data.sobrenome || '';
-      
-      if (data && data['Endereco']) {
-        const { rua, numero, cidade, estado } = data.Endereco;
-        this.enderecoCompleto = `${rua}, ${numero} - ${cidade}/${estado}`;
+      if (data && data['Usuario']) {
+        const { nome, sobrenome } = data['Usuario'];
+        const { rua, numero, cidade, estado } = data['Usuario']['Endereco'];
+
+        this.nome = nome || 'USUÁRIO DESCONHECIDO';
+        this.sobrenome = sobrenome || '';
+        this.enderecoCompleto = `${rua}, ${numero} - ${cidade}/${estado}`;        
       }
-      
+
     });
   }
 

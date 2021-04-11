@@ -8,9 +8,11 @@
 
     <ion-item class="bmd-form__item">
       <ion-label position="floating">CPF do cliente*</ion-label>
-      <ion-input formControlName="document" [brmasker]="{mask: '999.999.999-99', type: 'num', len: 14}"></ion-input>
+      <ion-input formControlName="documento" [brmasker]="{mask: '999.999.999-99', type: 'num', len: 14, userCaracters: true}"></ion-input>
     </ion-item>
-    <app-form-field-message *ngIf="isFieldInvalid(disposalRefisterForm.get('document'))" [controlErrors]="getControlErrorsList(disposalRefisterForm.get('document'))" formFieldName='cpf'></app-form-field-message>
+    <app-form-field-message *ngIf="isFieldInvalid(disposalRefisterForm.get('document'))"
+      [controlErrors]="getControlErrorsList(disposalRefisterForm.get('document'))" formFieldName='cpf'>
+    </app-form-field-message>
     <br>
     <ng-container *ngIf="productsFormArray.controls.length; else noProductsTemplate">
       <div *ngFor="let product of productsFormArray.controls; let i = index">
@@ -18,9 +20,6 @@
           <ion-col size="9">
             <h3>
               Produto {{i + 1}}
-              <ng-container *ngIf="product.get('idProduto').valid">
-                ({{product.get('idProduto').value}})
-              </ng-container>
             </h3>
           </ion-col>
           <ion-col>
@@ -31,21 +30,24 @@
         </ion-row>
 
         <ng-container [formGroup]="product">
-
           <ion-item class="bmd-form__item">
             <ion-label position="floating">Produto*</ion-label>
             <ion-select formControlName="idProduto">
-              <ion-select-option value="produto1">Produto 1</ion-select-option>
-              <ion-select-option value="produto2">Produto 2</ion-select-option>
+              <ion-select-option *ngFor="let product of myProducts" [value]="product._id">{{ product.nome }}
+                {{ product.dosagem }}</ion-select-option>
             </ion-select>
           </ion-item>
-          <app-form-field-message *ngIf="isFieldInvalid(product.get('idProduto'))" [controlErrors]="getControlErrorsList(product.get('idProduto'))" formFieldName='idProduto'></app-form-field-message>
+          <app-form-field-message *ngIf="isFieldInvalid(product.get('idProduto'))"
+            [controlErrors]="getControlErrorsList(product.get('idProduto'))" formFieldName='idProduto'>
+          </app-form-field-message>
 
           <ion-item class="bmd-form__item">
             <ion-label position="floating">Quantidade / unidades</ion-label>
             <ion-input type="number" formControlName="quantidade"></ion-input>
           </ion-item>
-          <app-form-field-message *ngIf="isFieldInvalid(product.get('quantidade'))" [controlErrors]="getControlErrorsList(product.get('quantidade'))" formFieldName='quantidade'></app-form-field-message>
+          <app-form-field-message *ngIf="isFieldInvalid(product.get('quantidade'))"
+            [controlErrors]="getControlErrorsList(product.get('quantidade'))" formFieldName='quantidade'>
+          </app-form-field-message>
 
           <ion-item class="bmd-form__item">
             <ion-checkbox formControlName="comBula"></ion-checkbox>
