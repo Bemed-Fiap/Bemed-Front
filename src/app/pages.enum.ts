@@ -3,4 +3,5 @@ export enum Pages {
     auth = 'auth',
     signUp = 'sign-up',
     home = 'app/home',
+    drugstore = 'drugstore',
 }

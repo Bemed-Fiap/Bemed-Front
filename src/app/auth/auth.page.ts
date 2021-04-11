@@ -28,6 +28,9 @@ export class AuthPage implements OnInit {
     private _alertController: AlertController
   ) { }
 
+  // 10101010999999 -> cnpj farmácia
+  // 10101010133 -> cpf usuário
+
   ngOnInit() {
     this.loginForm = this._fb.group({
       login: this._fb.control(
@@ -45,10 +48,17 @@ export class AuthPage implements OnInit {
     this._authService.doLogin(this.loginForm.value)
     .subscribe(
       (res) => {
+        let role: string = res.role;
         this._authService.currentAuth = res;
-        this._router.navigate([Pages.home]);
-      },
-      (error: HttpErrorResponse) => {
+
+        if (role) {
+          if (role.toUpperCase() === 'USUARIO') {
+            this._router.navigate([Pages.home]);
+          } else {
+            this._router.navigate([Pages.drugstore]);
+          }
+        }
+      }, (error: HttpErrorResponse) => {
         let message = null;
 
         if (error.status === 401 || error.status === 403)
