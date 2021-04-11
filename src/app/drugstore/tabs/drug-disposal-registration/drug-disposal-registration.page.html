@@ -1,4 +1,9 @@
+<bmd-header></bmd-header>
+
 <ion-content class="ion-padding-start ion-padding-end">
+
+  <h1>Cadastro de descarte</h1>
+
   <form class="bmd-form" [formGroup]="disposalRefisterForm">
 
     <ion-item class="bmd-form__item">
@@ -37,9 +42,10 @@
           <app-form-field-message *ngIf="isFieldInvalid(product.get('idProduto'))" [controlErrors]="getControlErrorsList(product.get('idProduto'))" formFieldName='idProduto'></app-form-field-message>
 
           <ion-item class="bmd-form__item">
-            <ion-label position="floating">Quantidade</ion-label>
+            <ion-label position="floating">Quantidade / unidades</ion-label>
             <ion-input type="number" formControlName="quantidade"></ion-input>
           </ion-item>
+          <app-form-field-message *ngIf="isFieldInvalid(product.get('quantidade'))" [controlErrors]="getControlErrorsList(product.get('quantidade'))" formFieldName='quantidade'></app-form-field-message>
 
           <ion-item class="bmd-form__item">
             <ion-checkbox formControlName="comBula"></ion-checkbox>

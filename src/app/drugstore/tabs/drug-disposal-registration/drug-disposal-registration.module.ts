@@ -9,6 +9,7 @@ import { DrugDisposalRegistrationPageRoutingModule } from './drug-disposal-regis
 import { DrugDisposalRegistrationPage } from './drug-disposal-registration.page';
 import { FormFieldMessagePageModule } from 'src/app/shared/form-field-message/form-field-message.module';
 import { BrMaskerModule } from 'br-mask';
+import { HeaderPageModule } from 'src/app/shared/header/header.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { BrMaskerModule } from 'br-mask';
     DrugDisposalRegistrationPageRoutingModule,
     ReactiveFormsModule,
     BrMaskerModule,
-    FormFieldMessagePageModule
+    FormFieldMessagePageModule,
+    HeaderPageModule
   ],
   declarations: [DrugDisposalRegistrationPage]
 })

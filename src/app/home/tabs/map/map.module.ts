@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MapPageRoutingModule } from './map-routing.module';
-import { HeaderPageModule } from '../components/header/header.module';
+import { HeaderPageModule } from '../../../shared/header/header.module';
 
 import { MapPage } from './map.page';
 
