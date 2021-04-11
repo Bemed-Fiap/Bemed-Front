@@ -16,7 +16,10 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./auth.page.scss'],
 })
 export class AuthPage implements OnInit {
+  
   public loginForm: FormGroup;
+  public type = 'password';
+  public iconEye = 'eye';
 
   constructor(
     private _fb: FormBuilder,
@@ -68,6 +71,11 @@ export class AuthPage implements OnInit {
 
   public createAccount(): void {
     this._router.navigate([Pages.signUp]);
+  }
+
+  public showOrHidePass(): void {
+    this.type = this.type === 'password' ? 'text' : 'password';
+    this.iconEye = this.iconEye === 'eye' ? 'eye-off' : 'eye';
   }
 
   async _showErrorAlert(message?: string) {
