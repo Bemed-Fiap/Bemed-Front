@@ -16,6 +16,10 @@ export const formFieldMessages = {
         required: 'Informe seu endereço de e-mail.',
         email: 'Informe um endereço de e-mail válido.'
     },
+    quantidade: {
+        required: 'Informe a quantidade em unidades do medicamento.',
+        pattern: 'A quantidade não pode ser menor que 1.'
+    },
     phone: {
         required: 'Informe seu telefone fixo ou móvel.',
         minlength: 'Informe um número de telefone válido com DDD.',
@@ -58,4 +62,7 @@ export const formFieldMessages = {
     estado: {
         required: 'Informe o estado do seu endereço.'
     },
+    idProduto: {
+        required: 'Selecione um produto.'
+    }
 }
