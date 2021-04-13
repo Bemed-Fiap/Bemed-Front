@@ -21,12 +21,12 @@ npm start
 
 Executando no mobile (no mínimo a versão 11 do Android é requerida)
 ```
-emulate:android:device
+npm run emulate:android:device
 ```
 
 Executando no emulador (no mínimo um emulador com a versão 11 do Android é requerida)
 ```
-emulate:android:virtual
+npm run emulate:android:virtual
 ```
 
 Integrantes
