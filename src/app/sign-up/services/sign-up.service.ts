@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 export class SignUpService {
 
   public finalURL: string;
-  private readonly URL_SIGN_UP = `http://localhost:9978/signup`;
-  private readonly URL_FARMACIA = `http://localhost:9978/farmacia`;
+  private readonly URL_SIGN_UP = `http://192.168.0.176:9978/signup`;
+  private readonly URL_FARMACIA = `http://192.168.0.176:9978/farmacia`;
 
   constructor(private http: HttpClient) {}
 

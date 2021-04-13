@@ -34,11 +34,11 @@ export class AuthPage implements OnInit {
   ngOnInit() {
     this.loginForm = this._fb.group({
       login: this._fb.control(
-        '10101010999999',
+        '',
         Validators.compose([Validators.required, Validators.minLength(11)])
       ),
       password: this._fb.control(
-        'abc123',
+        '',
         Validators.compose([Validators.required])
       ),
     });

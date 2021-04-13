@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class DrugstoreService {
   
-  private readonly URL = `http://localhost:9978/devolucao`;
+  private readonly URL = `http://192.168.0.176:9978/devolucao`;
 
-  private readonly URL_PRODUCTS = `http://localhost:9978/produtos`;
+  private readonly URL_PRODUCTS = `http://192.168.0.176:9978/produtos`;
 
   constructor(private http: HttpClient) {}
 

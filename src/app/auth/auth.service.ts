@@ -5,9 +5,9 @@ import { switchMap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly URL = `http://localhost:9978/login`;
-  private readonly URL_USER = `http://localhost:9978/usuario`;
-  private readonly URL_FARMACIA = `http://localhost:9978/farmacia`;
+  private readonly URL = `http://192.168.0.176:9978/login`;
+  private readonly URL_USER = `http://192.168.0.176:9978/usuario`;
+  private readonly URL_FARMACIA = `http://192.168.0.176:9978/farmacia`;
 
   private _auth$: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
