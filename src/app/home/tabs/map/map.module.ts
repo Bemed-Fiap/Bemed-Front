@@ -5,9 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MapPageRoutingModule } from './map-routing.module';
-import { HeaderPageModule } from '../components/header/header.module';
+import { HeaderPageModule } from '../../../shared/header/header.module';
 
 import { MapPage } from './map.page';
+
+import { GeolocationService } from '../services/geolocation.service';
 
 @NgModule({
   imports: [
@@ -17,6 +19,9 @@ import { MapPage } from './map.page';
     MapPageRoutingModule,
     HeaderPageModule
   ],
-  declarations: [MapPage]
+  declarations: [MapPage],
+  providers: [
+    GeolocationService
+  ]
 })
 export class MapPageModule {}

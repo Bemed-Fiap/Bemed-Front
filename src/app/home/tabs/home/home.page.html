@@ -1,5 +1,27 @@
 <bmd-header></bmd-header>
 
 <ion-content class="ion-padding-start ion-padding-end ">
-  <h1>Página de home</h1>
+  <section class="wrapper__content__section">
+    <video 
+      #player 
+      playsinline 
+      preload="auto"
+      class="wrapper__content__section__video"
+      poster="../../assets/images/intro-video-cover.jpg">
+      <source id="mp4" [src]="sanitizeVideo('../../assets/intro.mp4')" type="video/mp4">
+    </video>
+  </section>
+  <h1 class="wrapper__content__title">Introdução</h1>
+  <p class="wrapper__content__paragraph">
+    Segundo o Conselho Federal de Farmácia, o Brasil está entre os dez países que mais consome medicamentos no mundo, visando essa informação, o descarte incorreto 
+    deles causa problemas ao meio ambiente e aos manipuladores de lixo, além do que o armazenamento incorreto dos medicamentos em ambiente doméstico pode 
+    trazer riscos severos à nossa saúde.
+  </p>
+  <p class="wrapper__content__paragraph">
+    Clique aqui e veja o vídeo do <strong><a [href]="introVideo" target="_blank">Ministério da Saúde.</a></strong>
+  </p>  
+
 </ion-content>
+
+
+

@@ -1,0 +1,100 @@
+<bmd-header></bmd-header>
+
+<ion-content class="ion-padding-start ion-padding-end">
+
+  <h1>Cadastro de descarte</h1>
+
+  <form class="bmd-form" [formGroup]="disposalRefisterForm" (submit)="save()">
+
+    <ion-item class="bmd-form__item">
+      <ion-label position="floating">CPF do cliente*</ion-label>
+      <ion-input formControlName="documento" [brmasker]="{mask: '999.999.999-99', type: 'num', len: 14, userCaracters: true}"></ion-input>
+    </ion-item>
+    <app-form-field-message *ngIf="isFieldInvalid(disposalRefisterForm.get('document'))"
+      [controlErrors]="getControlErrorsList(disposalRefisterForm.get('document'))" formFieldName='cpf'>
+    </app-form-field-message>
+    <br>
+    <ng-container *ngIf="productsFormArray.controls.length; else noProductsTemplate">
+      <div *ngFor="let product of productsFormArray.controls; let i = index">
+        <ion-row>
+          <ion-col size="9">
+            <h3>
+              Produto {{i + 1}}
+            </h3>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="removeProduct(i)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ng-container [formGroup]="product">
+          <ion-item class="bmd-form__item">
+            <ion-label position="floating">Produto*</ion-label>
+            <ion-select formControlName="idProduto">
+              <ion-select-option *ngFor="let product of myProducts" [value]="product._id">{{ product.nome }}
+                {{ product.dosagem }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <app-form-field-message *ngIf="isFieldInvalid(product.get('idProduto'))"
+            [controlErrors]="getControlErrorsList(product.get('idProduto'))" formFieldName='idProduto'>
+          </app-form-field-message>
+
+          <ion-item class="bmd-form__item">
+            <ion-label position="floating">Quantidade / unidades</ion-label>
+            <ion-input type="number" formControlName="quantidade"></ion-input>
+          </ion-item>
+          <app-form-field-message *ngIf="isFieldInvalid(product.get('quantidade'))"
+            [controlErrors]="getControlErrorsList(product.get('quantidade'))" formFieldName='quantidade'>
+          </app-form-field-message>
+
+          <ion-item class="bmd-form__item">
+            <ion-checkbox formControlName="comBula"></ion-checkbox>
+            &nbsp;
+            <ion-label>Bula presente</ion-label>
+          </ion-item>
+
+          <ion-item class="bmd-form__item">
+            <ion-checkbox formControlName="comReceita"></ion-checkbox>
+            &nbsp;
+            <ion-label>Receituário presente</ion-label>
+          </ion-item>
+
+          <ion-item class="bmd-form__item">
+            <ion-checkbox formControlName="comCaixa"></ion-checkbox>
+            &nbsp;
+            <ion-label>Embalagem presente</ion-label>
+          </ion-item>
+
+          <ion-item class="bmd-form__item">
+            <ion-checkbox formControlName="comNotaFiscal"></ion-checkbox>
+            &nbsp;
+            <ion-label>Nota fiscal presente</ion-label>
+          </ion-item>
+
+          <ion-item class="bmd-form__item">
+            <ion-checkbox formControlName="dentroDaValidade"></ion-checkbox>
+            &nbsp;
+            <ion-label>Dentro da validade</ion-label>
+          </ion-item>
+
+        </ng-container>
+        <ion-item-divider></ion-item-divider>
+      </div>
+    </ng-container>
+
+
+    <ion-button fill="outline" class="bmd-form__button button-native" (click)="addProduct()">
+      Adicionar produto
+    </ion-button>
+
+    <ion-button class="bmd-form__button" [disabled]="disposalRefisterForm.invalid" type="submit">
+      Concluir
+    </ion-button>
+  </form>
+</ion-content>
+
+<ng-template #noProductsTemplate>
+  <h3>Nenhum produto na lista</h3>
+</ng-template>

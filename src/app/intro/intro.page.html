@@ -1,24 +1,28 @@
 <ion-content class="wrapper__content">
   <section class="wrapper__content__section">
-    <video controls class="wrapper__content__section__video">
-      <source src="movie.mp4" type="video/mp4">
-      <source src="movie.ogg" type="video/ogg">
-      Seu dispositivo não suporta a tag de video do HTML.
+    <video 
+      #player 
+      playsinline 
+      preload="auto"
+      class="wrapper__content__section__video"
+      poster="../../assets/images/intro-video-cover.jpg">
+      <source id="mp4" [src]="sanitizeVideo('../../assets/intro.mp4')" type="video/mp4">
     </video>
   </section>
   <h1 class="wrapper__content__title">Introdução</h1>
   <p class="wrapper__content__paragraph">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a diam in ex faucibus malesuada nec quis velit.
-    Pellentesque congue ornare congue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-    himenaeos. Nunc elit mi, blandit vitae libero commodo, tincidunt sagittis sem. Duis scelerisque mi non viverra
-    cursus. Aliquam tincidunt aliquam erat nec gravida. Nulla facilisi. Etiam ut dictum nisi. Donec auctor hendrerit
-    luctus. Etiam augue velit, eleifend ullamcorper ipsum non, tincidunt pretium est. Fusce suscipit nulla sed purus
-    venenatis congue. Ut non libero sit amet massa eleifend rutrum.
+    Segundo o Conselho Federal de Farmácia, o Brasil está entre os dez países que mais consome medicamentos no mundo, visando essa informação, o descarte incorreto 
+    deles causa problemas ao meio ambiente e aos manipuladores de lixo, além do que o armazenamento incorreto dos medicamentos em ambiente doméstico pode 
+    trazer riscos severos à nossa saúde.
   </p>
+  <p class="wrapper__content__paragraph">
+    Clique aqui e veja o vídeo do <strong><a [href]="introVideo" target="_blank">Ministério da Saúde.</a></strong>
+  </p>  
   <ion-button 
     color="tertiary" 
     class="wrapper__content__button" 
     (click)="setIntroductionOnLocalstorage()">
     Entendido
   </ion-button>
+
 </ion-content>

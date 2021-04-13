@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { AuthGuard } from '../guards/auth.guard';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [AuthGuard]
 })
-export class HomePageModule {}
+export class HomePageModule { }

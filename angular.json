@@ -31,8 +31,17 @@
                 "output": "./svg"
               }
             ],
-            "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "styles": [
+              "node_modules/leaflet/dist/leaflet.css",
+              "src/theme/variables.scss",
+              "src/global.scss"
+            ],
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/assets/scss"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -92,6 +101,11 @@
             "karmaConfig": "karma.conf.js",
             "styles": [],
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./src/assets/scss"
+              ]
+            },
             "assets": [
               {
                 "glob": "favicon.ico",
@@ -120,7 +134,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
