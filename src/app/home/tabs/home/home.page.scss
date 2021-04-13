@@ -9,4 +9,22 @@
         }
       }
     }
+
+    &__section {
+      &__video {
+        min-height: 100%;
+        width: 100%;
+      }
+    }
+  
+    &__title {
+      color: var(--ion-color-step-50);
+    }
+  
+    &__paragraph {
+      padding: 0 1.5rem;
+      line-height: 1.5rem;
+      text-align: justify;
+      color: var(--ion-color-step-50);
+    }
   }

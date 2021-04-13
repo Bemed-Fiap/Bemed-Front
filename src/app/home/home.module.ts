@@ -17,4 +17,4 @@ import { AuthGuard } from '../guards/auth.guard';
   declarations: [HomePage],
   providers: [AuthGuard]
 })
-export class HomePageModule {}
+export class HomePageModule { }
