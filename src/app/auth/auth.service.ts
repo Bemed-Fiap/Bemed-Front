@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs/operators';
 export class AuthService {
   private readonly URL = `http://localhost:9978/login`;
   private readonly URL_USER = `http://localhost:9978/usuario`;
+  private readonly URL_FARMACIA = `http://localhost:9978/farmacia`;
 
   private _auth$: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
@@ -29,11 +30,12 @@ export class AuthService {
     });
   }
 
-  set currentAuth(authReponse: any) {
-    this._auth$.next({...authReponse });
-    if (authReponse && authReponse.token) {
-      this._getUserInfo(authReponse.token).subscribe((res) => {
-        this._auth$.next({...res, ...authReponse });
+  set currentAuth(authResponse: any) {
+    this._auth$.next({...authResponse });
+    if (authResponse && authResponse.token) {
+      const role = authResponse.role.toUpperCase() as string;
+      this._getUserInfo(authResponse.token, role).subscribe((res) => {
+        this._auth$.next({...res, ...authResponse });
       });
     }
   }
@@ -42,8 +44,11 @@ export class AuthService {
     return this._auth$.value;
   }
 
-  private _getUserInfo(onetoken: string): Observable<any> {
-    return this.http.get(this.URL_USER, {
+  private _getUserInfo(onetoken: string, role = 'USUARIO'): Observable<any> {
+
+    let finalURL = (role === 'USUARIO') ? this.URL_USER : this.URL_FARMACIA;
+
+    return this.http.get(finalURL, {
       headers: {
         'Content-Type': 'application/json',
         onetoken

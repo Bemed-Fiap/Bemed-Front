@@ -23,6 +23,7 @@ export class HeaderPage implements OnInit {
     this.auth$ = this._authService.auth$;
 
     this.auth$.subscribe(data => {
+      const role = data.role.toUpperCase();
 
       if (data && data['Usuario']) {
         const { nome, sobrenome } = data['Usuario'];
@@ -30,7 +31,15 @@ export class HeaderPage implements OnInit {
 
         this.nome = nome || 'USUÁRIO DESCONHECIDO';
         this.sobrenome = sobrenome || '';
-        this.enderecoCompleto = `${rua}, ${numero} - ${cidade}/${estado}`;        
+        this.enderecoCompleto = `${rua}, ${numero} - ${cidade}/${estado}`;
+      } else {
+        if (role && role === 'FARMACIA' && data['Endereco']) {
+          const { nomeFantasia } = data;
+          const { rua, numero, cidade, estado } = data['Endereco'];
+  
+          this.nome = nomeFantasia || 'FARMÁCIA DESCONHECIDA';
+          this.enderecoCompleto = `${rua}, ${numero} - ${cidade}/${estado}`;        
+        }
       }
 
     });
