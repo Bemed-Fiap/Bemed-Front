@@ -5,7 +5,7 @@
     <ion-label noBorder >Sou uma farmácia.</ion-label>
   </ion-item>
   
-  <form class="bmd-form" [formGroup]="signInForm">
+  <form class="bmd-form" [formGroup]="signInForm" (submit)="save()">
     <ion-row [hidden]="!isDrugstore">
       <ion-col>
         <ion-item class="bmd-form__item">
@@ -146,7 +146,7 @@
       color="tertiary" 
       class="bmd-form__button" 
       [disabled]="signInForm.invalid"
-      (click)="save()">
+      type="submit">
       Cadastrar
     </ion-button>
   </form>

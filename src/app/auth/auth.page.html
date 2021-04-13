@@ -1,5 +1,5 @@
 <ion-content class="wrapper__content ion-padding">
-  <form class="bmd-form login-form" [formGroup]="loginForm">
+  <form class="bmd-form login-form" [formGroup]="loginForm" (submit)="doLogin()">
 
     <section class="login-form__img">
       <img src="../../assets/images/auth-icon.png" alt="Logotipo da Bemed">
@@ -20,7 +20,7 @@
     <app-form-field-message *ngIf="isFieldInvalid('password')" [controlErrors]="getControlErrorsList('password')"
       formFieldName='password'></app-form-field-message>
 
-    <ion-button color="tertiary" class="bmd-form__button" [disabled]="loginForm.invalid" (click)="doLogin()">
+    <ion-button color="tertiary" class="bmd-form__button" [disabled]="loginForm.invalid" type="submit">
       Entrar
     </ion-button>
     <ion-button color="danger" fill="outline" class="bmd-form__button" (click)="createAccount()">

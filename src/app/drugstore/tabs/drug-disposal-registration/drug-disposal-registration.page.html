@@ -4,7 +4,7 @@
 
   <h1>Cadastro de descarte</h1>
 
-  <form class="bmd-form" [formGroup]="disposalRefisterForm">
+  <form class="bmd-form" [formGroup]="disposalRefisterForm" (submit)="save()">
 
     <ion-item class="bmd-form__item">
       <ion-label position="floating">CPF do cliente*</ion-label>
@@ -89,7 +89,7 @@
       Adicionar produto
     </ion-button>
 
-    <ion-button class="bmd-form__button" [disabled]="disposalRefisterForm.invalid" (click)="save()">
+    <ion-button class="bmd-form__button" [disabled]="disposalRefisterForm.invalid" type="submit">
       Concluir
     </ion-button>
   </form>
