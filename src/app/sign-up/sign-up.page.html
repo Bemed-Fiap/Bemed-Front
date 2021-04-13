@@ -10,7 +10,7 @@
       <ion-col>
         <ion-item class="bmd-form__item">
           <ion-label position="floating">Nome Fantasia*</ion-label>
-          <ion-input formControlName="fantasyName"></ion-input>
+          <ion-input formControlName="nomeFantasia"></ion-input>
         </ion-item>
       </ion-col>      
     </ion-row>
@@ -18,7 +18,7 @@
       <ion-col>
         <ion-item class="bmd-form__item">
           <ion-label position="floating">Razão Social*</ion-label>
-          <ion-input formControlName="companyName"></ion-input>
+          <ion-input formControlName="razao"></ion-input>
         </ion-item>
       </ion-col>      
     </ion-row>    
@@ -26,14 +26,14 @@
       <ion-col>    
         <ion-item class="bmd-form__item">
           <ion-label position="floating">Nome*</ion-label>
-          <ion-input formControlName="name"></ion-input>
+          <ion-input formControlName="nome"></ion-input>
         </ion-item>
         <app-form-field-message *ngIf="isFieldInvalid('name')" [controlErrors]="getControlErrorsList('name')" formFieldName='name'></app-form-field-message>
       </ion-col>
       <ion-col>
         <ion-item class="bmd-form__item">
           <ion-label position="floating">Sobrenome*</ion-label>
-          <ion-input formControlName="lastname"></ion-input>
+          <ion-input formControlName="sobrenome"></ion-input>
         </ion-item>
         <app-form-field-message *ngIf="isFieldInvalid('lastname')" [controlErrors]="getControlErrorsList('lastname')" formFieldName='lastname'></app-form-field-message>
       </ion-col>
@@ -71,7 +71,7 @@
       </ion-col>
     </ion-row>
 
-    <ng-container formGroupName="address">
+    <ng-container formGroupName="Endereco">
       <ion-item class="bmd-form__item">
         <ion-label position="floating">CEP*</ion-label>
         <ion-input type="text" formControlName="cep" [brmasker]="{mask: '99999-999', type: 'num', len: 9}"></ion-input>
@@ -132,15 +132,15 @@
 
     <ion-item class="bmd-form__item">
       <ion-label position="floating">Senha*</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
+      <ion-input type="password" formControlName="senha"></ion-input>
     </ion-item>
-    <app-form-field-message *ngIf="isFieldInvalid('password')" [controlErrors]="getControlErrorsList('password')" formFieldName='password'></app-form-field-message>
+    <app-form-field-message *ngIf="isFieldInvalid('password')" [controlErrors]="getControlErrorsList('password')" formFieldName='senha'></app-form-field-message>
 
     <ion-item class="bmd-form__item">
       <ion-label position="floating">Confirme sua senha*</ion-label>
-      <ion-input type="password" formControlName="passwordConfirm" [pattern]="signInForm.get('password').value"></ion-input>
+      <ion-input type="password" formControlName="senhaConfirma" [pattern]="signInForm.get('senhaConfirma').value"></ion-input>
     </ion-item>
-    <app-form-field-message *ngIf="isFieldInvalid('passwordConfirm')" [controlErrors]="getControlErrorsList('passwordConfirm')" formFieldName='passwordConfirm'></app-form-field-message>
+    <app-form-field-message *ngIf="isFieldInvalid('passwordConfirm')" [controlErrors]="getControlErrorsList('passwordConfirm')" formFieldName='senhaConfirma'></app-form-field-message>
 
     <ion-button 
       color="tertiary" 

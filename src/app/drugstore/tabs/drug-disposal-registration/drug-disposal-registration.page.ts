@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
@@ -6,6 +7,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 import {
   getControlErrorsList,
   isFieldInvalid,
@@ -23,7 +25,8 @@ export class DrugDisposalRegistrationPage implements OnInit {
 
   constructor(
     private readonly _fb: FormBuilder,
-    private readonly _drugstoreService: DrugstoreService
+    private readonly _drugstoreService: DrugstoreService,
+    private readonly _alertController: AlertController
   ) {}
 
   public myProducts: any = [];
@@ -86,8 +89,29 @@ export class DrugDisposalRegistrationPage implements OnInit {
     this._drugstoreService
       .postGiveBack(this.disposalRefisterForm.value)
       .subscribe(
-        (res) => console.log('sucesso', res),
-        (error) => console.log('error', error)
+        (res) => {
+          this._showAlert('Sucesso', 'Devolução registrada com sucesso!');
+          this.disposalRefisterForm.reset();
+        },
+        (error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            this._showAlert('Ocorreu um erro', 'CPF não encontrado');  
+            return
+          }
+          this._showAlert();
+        }
       );
   }
+
+  public async _showAlert(header?: string, message?: string) {
+    const alert = await this._alertController.create({
+      header: header ? header : 'Houve um erro',
+      message: message
+        ? message
+        : `Um erro inesperado aconteceu, tente novamente mais tarde.`,
+      buttons: ['Tudo bem'],
+    });
+
+    await alert.present();
+  }  
 }

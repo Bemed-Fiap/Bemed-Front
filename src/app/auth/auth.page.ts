@@ -88,7 +88,7 @@ export class AuthPage implements OnInit {
     this.iconEye = this.iconEye === 'eye' ? 'eye-off' : 'eye';
   }
 
-  async _showErrorAlert(message?: string) {
+  public async _showErrorAlert(message?: string) {
     const alert = await this._alertController.create({
       header: 'Houve um erro',
       message: message
